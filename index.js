@@ -19,10 +19,13 @@ bot.on('message', async message => {
 
   if(cmd === `${prefix}help`) {
     let commands = new Disсord.RichEmbed()
+      .setColor('#F1C40F')
       .addField('!botinfo', 'About bot')
       .addField('!serverinfo', 'About server')
       .addField('!userinfo @user', 'About user')
       .addField('!report @user', 'Report user')
+      .addField('!kick @user', 'Kick user')
+      .addField('!ban @user', 'Ban user')
 
     return message.channel.send(commands)
   }

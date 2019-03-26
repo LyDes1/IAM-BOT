@@ -3,6 +3,7 @@ const Disсord = require('discord.js')
 const fs = require('fs')
 const bot = new Disсord.Client({disableEveryone: true})
 bot.commands = new Disсord.Collection()
+
 /*require commands */
 
 fs.readdir('./assets/modules/', (err, files) => {

@@ -5,7 +5,7 @@ module.exports.run = async(bot, message, args) => {
   let reason = args.join(' ').slice(22)
 
   let reason_error = new Discord.RichEmbed()
-    .addField('Error', `${message.author}, please, write a reason`)
+    .addField('Error', `${message.author}, please, write a nickname and reason`)
     .setColor('#ff0000')
   if(reason.length === 0) return message.channel.send(reason_error)
 

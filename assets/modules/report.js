@@ -23,7 +23,7 @@ module.exports.run = async(bot, message, args) => {
   if(!reportschannel) return message.channel.send('Server is not defined')
 
   let report_answer = new Discord.RichEmbed()
-    .addField('Thx, ', `${message.author} for reporting. Administration will review your report.`, )
+    .addField('Thx, ', `${message.author} for reporting. Administration will review your report. Maybe. Anyway`, )
     .setColor('#15f153')
 
   message.delete().catch(()=>{})

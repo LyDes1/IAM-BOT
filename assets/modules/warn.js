@@ -1,4 +1,4 @@
-const Discrod = require('discord.js')
+const Discord = require('discord.js')
 const fs = require('fs')
 const ms = require('ms')
 let warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8'))
@@ -20,39 +20,38 @@ module.exports.run = async (bot, message, args) => {
     if (err) console.log(err)
   })
 
-  let warnembed = new Discrod.RichEmbed()
+  let warnembed = new Discord.RichEmbed()
     .setDescription("Warns")
     .setAuthor(message.author.username)
-    .setColor("#ff0000")
-    .addField("Warned User", `<@${wUser.id}>`)
+    .setColor("#fc6400")
+    .addField("Warned User", `<@${warnuser.id}>`)
     .addField("Warned In", message.channel)
-    .addField("Number of Warnings", warns[wUser.id].warns)
+    .addField("Number of Warnings", warns[warnuser.id].warns)
     .addField("Reason", reason);
 
-  let warnchannel = message.guild.channels.find(`name`, 'incidents')
-  if(!warnchannel) return message.reply('coldnt gind channel')
+  let warnchannel = message.guild.channels.find(`name`, "incidents");
+  if(!warnchannel) return message.reply("Couldn't find channel");
 
   warnchannel.send(warnembed)
 
-  if(warns[warnuser.id].warns == 2) {
-    let muterole = message.guild.roles.find(`name`, 'muted')
-    if(!muterole) return message.reply('cdelay rol')
+  if(warns[warnuser.id].warns == 2){
+    let muterole = message.guild.roles.find(`name`, "muted");
+    if(!muterole) return message.reply("You should create that role dude.");
 
-    let mutetime = '10s'
-    await(warnuser.addRole(muterole.id))
-    message.channel.send(`<@${warnuser.id}> muted`)
+    let mutetime = "10s";
+    await(warnuser.addRole(muterole.id));
+    message.channel.send(`<@${warnuser.id}> has been temporarily muted`);
 
-    setTimeout(function () {
-      warnuser.removeRole(muterole.id)
-      message.reply(`<@${warnuser.id}> has been unmuted`)
+    setTimeout(function(){
+      wUser.removeRole(muterole.id)
+      message.reply(`<@${warnuser.id}> has been unmuted.`)
     }, ms(mutetime))
-
+  }
+  if(warns[warnuser.id].warns == 3){
+    message.guild.member(warnuser).ban(reason);
+    message.reply(`<@${warnuser.id}> has been banned.`)
   }
 
-  if(warns[warnuser.id].warns == 3) {
-    message.guild.member(warnuser).ban(reason)
-    message.reply(`<@${warnuser.id}> has been banned`)
-  }
 
 }
 

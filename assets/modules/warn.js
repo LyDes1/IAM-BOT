@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args) => {
 
   warnchannel.send(warnembed)
 
-  if(warns[warnuser.id].warns == 2){
+  if(warns[warnuser.id].warns >= 2){
     let muterole = message.guild.roles.find(`name`, "muted");
     if(!muterole) return message.reply("You should create that role dude.");
 
@@ -47,7 +47,7 @@ module.exports.run = async (bot, message, args) => {
       message.reply(`<@${warnuser.id}> has been unmuted.`)
     }, ms(mutetime))
   }
-  if(warns[warnuser.id].warns == 3){
+  if(warns[warnuser.id].warns == 5){
     message.guild.member(warnuser).ban(reason);
     message.reply(`<@${warnuser.id}> has been banned.`)
   }

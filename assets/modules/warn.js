@@ -38,7 +38,7 @@ module.exports.run = async (bot, message, args) => {
     let muterole = message.guild.roles.find(`name`, "muted");
     if(!muterole) return message.reply("You should create that role dude.");
 
-    let mutetime = "10s";
+    let mutetime = "5m";
     await(warnuser.addRole(muterole.id));
     message.channel.send(`<@${warnuser.id}> has been temporarily muted`);
 
@@ -51,7 +51,6 @@ module.exports.run = async (bot, message, args) => {
     message.guild.member(warnuser).ban(reason);
     message.reply(`<@${warnuser.id}> has been banned.`)
   }
-
 
 }
 

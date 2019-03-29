@@ -30,6 +30,34 @@ bot.on('ready', async () => {
   bot.user.setActivity('Main bot. Best bot.', {type: "WATCHING"})
 })
 
+bot.on('guildMemberAdd', async member => {
+  console.log(`${member.id} joined to server`)
+
+  let welcomechannel = member.guild.channels.find(`name`, 'welcome')
+  welcomechannel.send(`object joined: ${member}`)
+})
+
+bot.on('channelCreate', async channel => {
+  console.log(`${channel.name} has been created`)
+
+  let sendchannel = channel.guild.channels.find(`name`, 'general')
+  sendchannel.send(`${channel.name} has been created`)
+})
+
+bot.on('channelDelete', async channel => {
+  console.log(`${channel.name} has been deleted`)
+
+  let sendchannel = channel.guild.channels.find(`name`, 'general')
+  sendchannel.send(`${channel.name} has been deleted`)
+})
+
+bot.on('guildMemberRemove', async member => {
+  console.log(`${member.id} leaved to server`)
+
+  let welcomechannel = member.guild.channels.find(`name`, 'welcome')
+  welcomechannel.send(`leaved member: ${member}`)
+})
+
 bot.on('message', async message => {
   if(message.author.bot) return
   if(message.channel.type === 'dm') return

@@ -23,6 +23,7 @@
     "@babel/preset-env": "^7.4.2",
     "babel-loader": "^8.0.5",
     "discord.js": "^11.4.2",
+    "fortnite": "^4.3.2",
     "nodemon": "^1.18.10",
     "superagent": "^5.0.2",
     "webpack": "^4.29.6",

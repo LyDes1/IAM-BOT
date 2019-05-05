@@ -27,7 +27,7 @@ fs.readdir('./assets/modules/', (err, files) => {
 
 bot.on('ready', async () => {
   console.log(`${bot.user.username} is online`)
-  bot.user.setActivity('Main bot. Best bot.', {type: "WATCHING"})
+  bot.user.setActivity('Lydesi.pro | Comming soon', {type: "WATCHING"})
 })
 
 bot.on('guildMemberAdd', async member => {
